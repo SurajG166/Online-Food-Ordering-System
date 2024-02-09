@@ -20,8 +20,8 @@ This project is an online food ordering web application developed using HTML, CS
 - Implemetation of more JavaScript.
 - Adding user reviews and ratings for menu items.
 
-## Demo
-[Insert link to live demo or demo video]
+## Deployment
+https://online-food-ordering-system-jfzj.vercel.app/
 
 ## Screenshots
 ![Screenshot 2024-02-09 135921](https://github.com/SurajG166/Online-Food-Ordering-System/assets/142411194/867f4f61-6c77-4a42-924f-8ca6035c139b)
