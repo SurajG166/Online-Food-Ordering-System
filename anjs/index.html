@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover">
+    <title>JARUS's</title>
+    <link rel="icon" type="image/x-icon" href="faviconn.png">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="foodApp" ng-controller="foodCtrl">
+        <div id="food-container">
+            <div id="header">
+                <div class="logo"><img src="logoo.png" height="140px" width="100px" alt="logo"></div>
+                <div class="welcome">Welcome to JARUS</div>
+                <div class="util">
+                    <i class="fa fa-search"> Search</i>
+                    <i class="fa fa-tags"> Offers</i>
+                    <i class="fa fa-plus"> Items</i>
+                </div>
+            </div>
+        </div>
+        <!-- desktop view -->
+    <div class="container">
+        <div class="menu-item">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Your Orders</a>
+            <a href="#">Wishlists</a>
+            <a href="#">Cart</a>
+            <a href="#">Contact</a>
+            <a href="#">Checkout</a>
+        </div>
+        <div class="intro">
+            <h1>What's on your mind ?</h1>
+            <div class="choosing">
+                <div ng-repeat="item in Menu" class="content">
+                    <img ng-src="{{ item.imgSrc }}" height="300px" width="300px" alt="">
+                    <h1>{{ item.name }} @ ₹{{ item.price }}</h1>
+                    <button class="button" ng-click="addToOrder(item)" ><span>Add </span></button>
+                </div>
+            </div>
+            <div class="next">
+                <h2>YOUR ORDERS</h2>
+            <div ng-repeat="item in Menu">
+                <div ng-if="item.count > 0">
+                    <h3>{{ item.name }}</h3>
+                    <p>Price: {{ item.price }}</p>
+                    <button ng-click="removeFromOrder(item)">Remove</button>
+                    <span>Count: {{ item.count }}</span>
+                </div>
+            </div>
+            <h3>Total: {{ getTotal() }}</h3>
+            </div>
+            
+    </div>
+    
+    <script>
+    var app = angular.module('foodApp', []);
+    
+    app.controller('foodCtrl', function($scope) {
+        $scope.Menu = [
+            { name: 'Burger', price: 60, count: 0, imgSrc: 'burger.webp' },
+            { name: 'Chicken Biryani', price: 140, count: 0, imgSrc: 'biryani.jpg' },
+            { name: 'Bhel Puri', price: 30, count: 0, imgSrc: 'bhel.png' },
+            { name: 'Noodles', price: 120, count: 0, imgSrc: 'noodles.avif' },
+            { name: 'Cheese Cake    ', price: 80, count: 0, imgSrc: 'cheese cake.webp' },
+            { name: 'Dahi Puri', price: 35, count: 0, imgSrc: 'dahi puri.jpg' },
+            { name: 'Chocolate Milkshake', price: 40, count: 0, imgSrc: 'chocolate milkshake.jpg' },   
+            { name: 'Panner Butter Masala', price: 120, count: 0, imgSrc: 'paneer curry.jpg' },
+            { name: 'Coke', price: 20, count: 0, imgSrc: 'coke.webp' },
+            { name: 'Nan Bread', price: 25, count: 0, imgSrc: 'nan.webp' },
+            { name: 'Gobi Manchurian', price: 80, count: 0, imgSrc: 'gobi.JPG' },
+            { name: 'Chicken Kabab', price: 120, count: 0, imgSrc: 'kabab.JPG' },
+        ];
+        
+        $scope.addToOrder = function(item) {
+            item.count++;
+        };
+    
+        $scope.removeFromOrder = function(item) {
+            if (item.count > 0) {
+                item.count--;
+            }
+        };
+    
+        $scope.getTotal = function() {
+            var total = 0;
+            angular.forEach($scope.Menu, function(item) {
+                total += item.price * item.count;
+            });
+            return total;
+        };
+    });
+    </script>
+    </div>
+        </div>
+        
+</body>
+</html>
